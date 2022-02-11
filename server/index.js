@@ -1,5 +1,7 @@
 const express = require("express");
 const cors = require("cors");
+const games = require(`./db.json`)
+let globalId = 4
 
 const app = express();
 
@@ -36,5 +38,48 @@ app.get("/api/fortune", (req, res) => {
   res.status(200).send(randomFortune);
   
 });
+
+app.get("/api/games", (req, res) => {
+  res.status(200).send(games)
+})
+
+app.delete("/api/games/:id", (req, res) => {
+  let index = games.findIndex(elem => elem.id === +req.params.id)
+  games.splice(index, 1)
+  res.status(200).send(games)
+})
+
+app.post("/api/games", (req, res) => {
+  let {title, rating, imageURL} = req.body
+  let newGame = {
+    id: globalId,
+    title,
+    rating,
+    imageURL
+  }
+  games.push(newGame)
+  res.status(200).send(games)
+  globalId++
+})
+
+app.put("/api/games/:id", (req, res) => {
+  let {id} = req.params
+  let {type} = req.body
+  let index = games.findIndex(elem => elem.id === +id)
+
+  if (games[index].rating === 5 && type === `plus`) {
+      res.status(400).send(`We cannot go above 5`)
+  } else if (games[index].rating === 0 && type === `minus`) {
+      res.status(400).send(`We cannot go below 0`)
+  } else if (type === `plus`) {
+      games[index].rating++
+      res.status(200).send(games)
+  } else if (type === `minus`) {
+      games[index].rating--
+      res.status(200).send(games)
+  } else {
+      res.status(400).send(`You broke it!`)
+  }
+})
 
 app.listen(4000, () => console.log("Server running on 4000"));

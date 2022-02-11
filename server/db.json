@@ -1,0 +1,20 @@
+[
+    {
+      "id": 1,
+      "title": "Halo Infinite",
+      "rating": 4,
+      "imageURL" : "https://oyster.ignimgs.com/wordpress/stg.ign.com/2020/07/halo_infinite_keyart_primary_vertical-748a0db8be6c497d86f83ad76265060f-720x915.png"
+    },
+    {
+      "id": 2,
+      "title": "Fable III",
+      "rating": 4,
+      "imageURL" : "https://m.media-amazon.com/images/I/81sAZoHgYYL._SL1500_.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Baldur's Gate II: Shadows of Amn",
+      "rating": 5,
+      "imageURL" : "https://m.media-amazon.com/images/I/61WW8215QHL._SX342_.jpg"
+    }
+  ]
